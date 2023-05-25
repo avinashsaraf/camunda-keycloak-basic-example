@@ -1,0 +1,4 @@
+rootProject.name = 'camunda-keycloak-integration'
+
+include 'camunda-keycloak-basic'
+

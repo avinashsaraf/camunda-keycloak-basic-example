@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group 'in.avinashsaraf'
+version '0.0.1'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.camunda.bpm.extension:camunda-platform-7-keycloak'
+    implementation 'org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp'
+
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:2.7.12"
+        mavenBom "org.camunda.bpm:camunda-bom:7.1.0-Final"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
