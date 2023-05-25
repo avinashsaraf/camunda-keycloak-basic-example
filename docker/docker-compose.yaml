@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  keycloak:
+    depends_on: [ postgres ]
+    image: bitnami/keycloak:21.1.1
+    container_name: keycloak
+    ports:
+      - "8089:8080"
+    networks:
+      - camunda-keycloak-nw
+    environment:
+      - KEYCLOAK_DATABASE_HOST=postgres
+      - KEYCLOAK_DATABASE_USER=postgres
+      - KEYCLOAK_DATABASE_PASSWORD=postgres
+      - KEYCLOAK_DATABASE_NAME=postgres
+    volumes:
+      - /tmp/keycloak:/opt/jboss/keycloak/standalone/data
+    #default keycloak username and password is user/bitnami
+
+  postgres:
+    image: postgres:14
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    networks:
+      - camunda-keycloak-nw
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - /tmp/postgres:/var/lib/postgresql/data
+
+networks:
+  camunda-keycloak-nw:
+    driver: bridge
