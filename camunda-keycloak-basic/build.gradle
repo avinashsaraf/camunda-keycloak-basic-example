@@ -7,20 +7,22 @@ group 'in.avinashsaraf'
 version '0.0.1'
 sourceCompatibility = '17'
 
-repositories {
-    mavenCentral()
+ext {
+    springBootVersion = '2.7.12'
+    camundaSpringBootVersion = '7.19.0'
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.camunda.bpm.extension:camunda-platform-7-keycloak'
-    implementation 'org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp'
+    implementation 'com.h2database:h2'
+    implementation "org.camunda.bpm.extension:camunda-platform-7-keycloak:7.18.0"
+    implementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:${camundaSpringBootVersion}"
 
 }
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:2.7.12"
+        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
         mavenBom "org.camunda.bpm:camunda-bom:7.1.0-Final"
     }
 }

@@ -6,23 +6,20 @@ group = 'in.avinashsaraf'
 version = '0.0.1'
 sourceCompatibility = '17'
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
     }
-}
 
-repositories {
-    mavenCentral()
-}
+    dependencies {
+        implementation 'org.projectlombok:lombok:1.18.26'
+        annotationProcessor 'org.projectlombok:lombok:1.18.26'
 
-
-dependencies {
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-
-    testCompileOnly 'org.projectlombok:lombok'
-    testAnnotationProcessor 'org.projectlombok:lombok'
+        testCompileOnly 'org.projectlombok:lombok:1.18.26'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+    }
 }
 
 test {
