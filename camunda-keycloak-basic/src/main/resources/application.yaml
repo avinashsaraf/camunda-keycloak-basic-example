@@ -1,0 +1,18 @@
+camunda:
+  bpm:
+    admin-user:
+      id: sysadmin
+      first-name: John
+      last-name: Doe
+      password: sysadmin
+    database:
+      schema-update: true
+    filter.create: All
+    generic-properties:
+      properties:
+        initialize-telemetry: false
+
+spring:
+  h2:
+    console:
+      enabled: true
