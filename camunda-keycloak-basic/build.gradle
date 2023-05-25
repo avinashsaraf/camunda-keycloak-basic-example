@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '2.7.12'
 }
 
 group 'in.avinashsaraf'
@@ -9,13 +10,13 @@ sourceCompatibility = '17'
 
 ext {
     springBootVersion = '2.7.12'
-    camundaSpringBootVersion = '7.19.0'
+    camundaSpringBootVersion = '7.18.0'
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.h2database:h2'
-    implementation "org.camunda.bpm.extension:camunda-platform-7-keycloak:7.18.0"
+    implementation "org.camunda.bpm.extension:camunda-platform-7-keycloak:${camundaSpringBootVersion}"
     implementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:${camundaSpringBootVersion}"
 
 }
@@ -23,7 +24,7 @@ dependencies {
 dependencyManagement {
     imports {
         mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
-        mavenBom "org.camunda.bpm:camunda-bom:7.1.0-Final"
+        mavenBom "org.camunda.bpm:camunda-bom:${camundaSpringBootVersion}"
     }
 }
 
