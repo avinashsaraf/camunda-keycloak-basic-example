@@ -1,0 +1,54 @@
+{
+  "groupId": "CAMUNDA_ACCESS_ADMIN",
+  "authorizations": [
+    {
+      "resourceType": "APPLICATION",
+      "resourceId": "*",
+      "permissions": [
+        "ALL"
+      ]
+    },
+    {
+      "resourceType": "AUTHORIZATION",
+      "resourceId": "*",
+      "permissions": [
+        "ALL"
+      ]
+    },
+    {
+      "resourceType": "FILTER",
+      "resourceId": "*",
+      "permissions": [
+        "ALL"
+      ]
+    },
+    {
+      "resourceType": "OPERATION_LOG_CATEGORY",
+      "resourceId": "*",
+      "permissions": [
+        "ALL"
+      ]
+    },
+    {
+      "resourceType": "PROCESS_DEFINITION",
+      "resourceId": "*",
+      "permissions": [
+        "ALL"
+      ]
+    },
+    {
+      "resourceType": "PROCESS_INSTANCE",
+      "resourceId": "*",
+      "permissions": [
+        "ALL"
+      ]
+    },
+    {
+      "resourceType": "SYSTEM",
+      "resourceId": "*",
+      "permissions": [
+        "ALL"
+      ]
+    }
+  ]
+}

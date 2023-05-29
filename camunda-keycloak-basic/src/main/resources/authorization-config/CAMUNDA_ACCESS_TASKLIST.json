@@ -1,0 +1,19 @@
+{
+  "groupId": "CAMUNDA_ACCESS_TASKLIST",
+  "authorizations": [
+    {
+      "resourceType": "APPLICATION",
+      "resourceId": "tasklist",
+      "permissions": [
+        "ACCESS"
+      ]
+    },
+    {
+      "resourceType": "FILTER",
+      "resourceId": "*",
+      "permissions": [
+        "READ"
+      ]
+    }
+  ]
+}

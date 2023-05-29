@@ -15,6 +15,8 @@ ext {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'com.h2database:h2'
     implementation "org.camunda.bpm.extension:camunda-platform-7-keycloak:${camundaSpringBootVersion}"
     implementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:${camundaSpringBootVersion}"

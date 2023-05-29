@@ -2,23 +2,24 @@ version: '3.8'
 services:
   keycloak:
     depends_on: [ postgres ]
-    image: quay.io/keycloak/keycloak:21.1.1
+    image: bitnami/keycloak:21.1.1
     container_name: keycloak
-    entrypoint: /opt/keycloak/bin/kc.sh start-dev
     ports:
       - "8089:8080"
     networks:
       - camunda-keycloak-nw
     environment:
-      - KC_DB=postgres
-      - KC_DB_URL=jdbc:postgresql://postgres:5432/postgres
-      - KC_DB_USERNAME=postgres
-      - KC_DB_PASSWORD=postgres
-      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_DATABASE_HOST=postgres
+      - KEYCLOAK_DATABASE_USER=postgres
+      - KEYCLOAK_DATABASE_PASSWORD=postgres
+      - KEYCLOAK_DATABASE_NAME=postgres
+      - KEYCLOAK_ADMIN_USER=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
-      - KEYCLOAK_LOGLEVEL=DEBUG
+      - KEYCLOAK_PRODUCTION=false
+      - KEYCLOAK_LOG_LEVEL=DEBUG
     volumes:
-      - /tmp/keycloak-quay:/opt/jboss/keycloak/standalone/data
+      - /tmp/keycloak-bitnami:/opt/jboss/keycloak/standalone/data
+    #default keycloak username and password is user/bitnami
 
   postgres:
     image: postgres:14
@@ -32,7 +33,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
-      - /tmp/postgres-quay:/var/lib/postgresql/data
+      - /tmp/postgres-bitnami:/var/lib/postgresql/data
 
 networks:
   camunda-keycloak-nw:

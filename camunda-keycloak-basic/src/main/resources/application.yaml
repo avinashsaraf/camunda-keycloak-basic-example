@@ -1,10 +1,10 @@
 camunda:
   bpm:
-    admin-user:
-      id: sysadmin
-      first-name: John
-      last-name: Doe
-      password: sysadmin
+#    admin-user:
+#      id: sysadmin
+#      first-name: John
+#      last-name: Doe
+#      password: sysadmin
     database:
       schema-update: true
     filter.create: All
@@ -16,3 +16,39 @@ spring:
   h2:
     console:
       enabled: true
+
+security:
+  sso-login:
+    csrf-excluded-url-patterns: /camunda/api/**, /v1/**, /engine-rest/**
+    keycloak-config:
+      keycloakIssuerUrl: http://localhost:8089/realms/my_kc_realm
+      keycloakAdminUrl: http://localhost:8089/admin/realms/my_kc_realm
+      clientId: ${KEYCLOAK_CLIENT_ID}
+      clientSecret: ${KEYCLOAK_CLIENT_SECRET}
+      useUsernameAsCamundaUserId: false
+      useGroupPathAsCamundaGroupId: true
+#      authorizationCheckEnabled: true
+      administratorGroupName: admin-group
+
+# Spring Boot Security OAuth2 SSO
+spring.security.oauth2:
+  client:
+    registration:
+      keycloak:
+        provider: keycloak
+        client-id: ${KEYCLOAK_CLIENT_ID}
+        client-secret: ${KEYCLOAK_CLIENT_SECRET}
+        authorization-grant-type: authorization_code
+        redirect-uri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+        scope: openid, email
+    provider:
+      keycloak:
+        issuer-uri: http://localhost:8089/realms/my_kc_realm
+        authorization-uri: http://localhost:8089/realms/my_kc_realm/protocol/openid-connect/auth
+        user-info-uri: http://localhost:8089/realms/my_kc_realm/protocol/openid-connect/userinfo
+        token-uri: http://localhost:8089/realms/my_kc_realm/protocol/openid-connect/token
+        jwk-set-uri: http://localhost:8089/realms/my_kc_realm/protocol/openid-connect/certs
+        logout-uri: http://localhost:8089/realms/my_kc_realm/protocol/openid-connect/logout
+        user-name-attribute: preferred_username
+
+logging.level.org.camunda.bpm.extension.keycloak: DEBUG
