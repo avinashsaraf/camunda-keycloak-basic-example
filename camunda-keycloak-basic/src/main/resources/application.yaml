@@ -19,7 +19,7 @@ spring:
 
 security:
   sso-login:
-    csrf-excluded-url-patterns: /camunda/api/**, /v1/**, /engine-rest/**
+    csrf-excluded-url-patterns: /camunda/api/**
     keycloak-config:
       keycloakIssuerUrl: http://localhost:8089/realms/my_kc_realm
       keycloakAdminUrl: http://localhost:8089/admin/realms/my_kc_realm
@@ -27,7 +27,6 @@ security:
       clientSecret: ${KEYCLOAK_CLIENT_SECRET}
       useUsernameAsCamundaUserId: false
       useGroupPathAsCamundaGroupId: true
-#      authorizationCheckEnabled: true
       administratorGroupName: admin-group
 
 # Spring Boot Security OAuth2 SSO
